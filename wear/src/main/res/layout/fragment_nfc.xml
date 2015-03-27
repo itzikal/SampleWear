@@ -7,9 +7,16 @@
              tools:context="com.boatbook.sailinglogwear.fragments.NfcFragment">
 
 
+<ImageView
+    android:layout_marginTop="5dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/nfc_logo"
+    android:layout_width="40dp"
+    android:layout_height="40dp"/>
     <TextView
-        android:textSize="40sp"
-        android:textColor="@color/black"
+        android:background="@color/black_40p"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:gravity="center"
         android:text="swipe your watch to board the boat"
         android:layout_gravity="center"
