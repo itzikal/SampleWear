@@ -16,6 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+    }
     productFlavors {
     }
 }
@@ -29,4 +32,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-all:2.0.2-beta'
     compile 'de.halfbit:tinybus:3.0.1'
+    compile files('libs/jdom.jar')
+    compile files('libs/jaxen.jar')
 }
