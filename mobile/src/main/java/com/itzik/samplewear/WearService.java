@@ -45,6 +45,8 @@ public class WearService extends Service implements GoogleApiClient.ConnectionCa
     private static final int MSG_IMAGE_TO_WEAR = 4;
 
     private static final String WEAR_MESSAGE_PATH = "/message";
+    private static final String START_ACTIVITY = "/start_activity";
+
     @Override
     public void onCreate()
     {
