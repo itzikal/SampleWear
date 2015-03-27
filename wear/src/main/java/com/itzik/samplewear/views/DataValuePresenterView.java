@@ -105,7 +105,7 @@ public class DataValuePresenterView extends LinearLayout
 
     private void assignViews()
     {
-        mTitle = (TextView) findViewById(R.id.title);
+        mTitle = (TextView) findViewById(R.id.title_stat);
         mLayoutCenter = (LinearLayout) findViewById(R.id.layoutCenter);
         mLayoutCenterMainText = (TextView) findViewById(R.id.layout_center_main_text);
         mLayoutCenterAuxText = (TextView) findViewById(R.id.layout_center_aux_text);

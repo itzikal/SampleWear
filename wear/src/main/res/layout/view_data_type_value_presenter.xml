@@ -1,103 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:id="@+id/layoutCenter"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/title_stat"
+        android:text="{speed}"
+        android:layout_margin="3dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal">
+    <LinearLayout
+        android:background="@drawable/gray_shpae_for_statistics"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        android:id="@+id/layoutCenter"
+        android:padding="2dp"
+        android:layout_gravity="center"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/layout_center_main_text"
-                        android:text="{320}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"/>
-
-                    <TextView
-                        android:id="@+id/layout_center_measurement_unit"
-                        android:layout_marginLeft="5dp"
-                        android:text="{mi}"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="bottom"
-                        />
-                </LinearLayout>
-            </FrameLayout>
-            <TextView
-                android:id="@+id/layout_center_aux_text"
-                android:text="{Total path}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:id="@+id/layoutLeft"
-            android:layout_width="140dp"
-
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             >
 
-            <TextView
-                android:id="@+id/layout_left_main_text"
-                android:text="{320}"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_horizontal"/>
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
 
-            <TextView
+                <TextView
+                    android:id="@+id/layout_center_main_text"
+                    android:text="{320}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"/>
 
-                android:id="@+id/layout_left_aux_text"
-                android:text="{Total path}"
+                <TextView
+                    android:id="@+id/layout_center_measurement_unit"
+                    android:layout_marginLeft="5dp"
+                    android:text="{mi}"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    />
+            </LinearLayout>
+        </FrameLayout>
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_horizontal"
+        <TextView
+            android:id="@+id/layout_center_aux_text"
+            android:text="{Total path}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
 
-                />
-        </LinearLayout>
+    <LinearLayout
+        android:background="@drawable/gray_shpae_for_statistics"
+        android:orientation="vertical"
+        android:id="@+id/layoutLeft"
+        android:layout_width="80dp"
+        android:padding="2dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_margin="5dp"
+        >
 
-        <LinearLayout
-            android:layout_gravity="bottom|center_horizontal"
-            android:orientation="vertical"
-            android:id="@+id/layoutRight"
-            android:layout_width="140dp"
-            android:gravity="center_vertical"
-            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/layout_left_main_text"
+            android:text="{320}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"/>
 
-            <TextView
-                android:id="@+id/layout_right_main_text"
-                android:text="{320}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-               />
+        <TextView
 
-            <TextView
-                android:id="@+id/layout_right_aux_text"
-                android:text="{Total path}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout>
+            android:id="@+id/layout_left_aux_text"
+            android:text="{Total path}"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/gray_shpae_for_statistics"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:id="@+id/layoutRight"
+        android:layout_width="80dp"
+        android:padding="2dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/layout_right_main_text"
+            android:text="{320}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:id="@+id/layout_right_aux_text"
+            android:text="{Total path}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
 
 </FrameLayout>

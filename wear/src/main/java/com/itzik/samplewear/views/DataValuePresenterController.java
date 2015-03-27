@@ -36,33 +36,33 @@ public class DataValuePresenterController
     private DataValue mCurrentDataValue;
     private int mCurrentDataValueIndex;
 
-    private DataValue [] mDistanceDataSet;
-    private DataValue [] mHeadingDataSet;
-    private DataValue [] mVelocityDataSet;
-    private DataValue [] mSelectedDateSet;
+    private DataValue[] mDistanceDataSet;
+    private DataValue[] mHeadingDataSet;
+    private DataValue[] mVelocityDataSet;
+    private DataValue[] mSelectedDateSet;
 
     public DataValuePresenterController(Context context, DataValuePresenterView view)
     {
         mContext = context;
         mView = view;
-//        mView.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                switchToNextValue();
-//            }
-//        });
-//
-//        setDataSetVisibility(View.VISIBLE);
-//        setTitle(mContext.getString(R.string.sailing));
+        //        mView.setOnClickListener(new View.OnClickListener()
+        //        {
+        //            @Override
+        //            public void onClick(View v)
+        //            {
+        //                switchToNextValue();
+        //            }
+        //        });
+        //
+        //        setDataSetVisibility(View.VISIBLE);
+        //        setTitle(mContext.getString(R.string.sailing));
         mLegDistance = new DataValue(DISTANCE_UNITS, mContext.getString(R.string.leg), DISTANCE_PRECISION);
         mAerialDistract = new DataValue(DISTANCE_UNITS, mContext.getString(R.string.aerial), DISTANCE_PRECISION);
-        mTotalDistance  = new DataValue(DISTANCE_UNITS, mContext.getString(R.string.total_path), DISTANCE_PRECISION);
+        mTotalDistance = new DataValue(DISTANCE_UNITS, mContext.getString(R.string.total_path), DISTANCE_PRECISION);
         mDistanceDataSet = new DataValue[]{mLegDistance, mTotalDistance, mAerialDistract};
 
-        mAverageVelocity = new DataValue(VELOCITY_UNITS, mContext.getString(R.string.average) , VELOCITY_PRECISION);
-        mCurrentVelocity = new DataValue(VELOCITY_UNITS, mContext.getString(R.string.current) , VELOCITY_PRECISION);
+        mAverageVelocity = new DataValue(VELOCITY_UNITS, mContext.getString(R.string.average), VELOCITY_PRECISION);
+        mCurrentVelocity = new DataValue(VELOCITY_UNITS, mContext.getString(R.string.current), VELOCITY_PRECISION);
         mMaxVelocity = new DataValue(VELOCITY_UNITS, mContext.getString(R.string.max), VELOCITY_PRECISION);
         mVelocityDataSet = new DataValue[]{mAverageVelocity, mCurrentVelocity, mMaxVelocity};
 
@@ -70,14 +70,14 @@ public class DataValuePresenterController
         mCurrentHeading = new DataValue(HEADING_UNITS, mContext.getString(R.string.current), HEADING_PRECISION);
         mHeadingToOrigin = new DataValue(HEADING_UNITS, mContext.getString(R.string.to_origin), HEADING_PRECISION);
         mHeadingDataSet = new DataValue[]{mLegHeading, mCurrentHeading, mHeadingToOrigin};
-     }
+    }
 
 
     public void updateLocationSample(LocationDataSample dataSample)
     {
-        mTotalDistance.setValue((float)(dataSample.getTotalDistance() * METER_TO_NAUTICAL_MILE));
-        mAerialDistract.setValue((float)(dataSample.getArialDistanceFormStart()* METER_TO_NAUTICAL_MILE));
-        mLegDistance.setValue((float)(dataSample.getDistanceFromLeg() * METER_TO_NAUTICAL_MILE));
+        mTotalDistance.setValue((float) (dataSample.getTotalDistance() * METER_TO_NAUTICAL_MILE));
+        mAerialDistract.setValue((float) (dataSample.getArialDistanceFormStart() * METER_TO_NAUTICAL_MILE));
+        mLegDistance.setValue((float) (dataSample.getDistanceFromLeg() * METER_TO_NAUTICAL_MILE));
 
         mAverageVelocity.setValue(dataSample.getAverageSpeed());
         mCurrentVelocity.setValue(dataSample.getSpeed());
@@ -85,12 +85,13 @@ public class DataValuePresenterController
 
         mCurrentHeading.setValue(dataSample.getBearing());
         mHeadingToOrigin.setValue(dataSample.getHeadingFromStart());
-        mLegHeading.setValue((float)dataSample.getLegHeading());
+        mLegHeading.setValue((float) dataSample.getLegHeading());
 
-      mView.applyDataValues(mCurrentDataValue);
+        mView.applyDataValues(mCurrentDataValue);
     }
 
-    public void clearCalculations() {
+    public void clearCalculations()
+    {
         mTotalDistance.reset();
         mAerialDistract.reset();
         mLegDistance.reset();
@@ -110,6 +111,7 @@ public class DataValuePresenterController
     {
         mView.applyDataValues(mCurrentDataValue);
     }
+
     public void setTitle(String title)
     {
         mView.setTitle(title);
@@ -133,7 +135,7 @@ public class DataValuePresenterController
                 return;
         }
         setCenter(1);
-
+        mView.setTitle(type.name());
         mView.applyDataSetValues(mSelectedDateSet);
     }
 
@@ -157,7 +159,6 @@ public class DataValuePresenterController
     }
 
 
-
     public class DataValue
     {
         private final DecimalFormat mDecimalFormat;
@@ -169,10 +170,10 @@ public class DataValuePresenterController
         {
             return mDecimalFormat.format(mValue);
         }
-//        public float getValue()
-//        {
-//            return mValue;
-//        }
+        //        public float getValue()
+        //        {
+        //            return mValue;
+        //        }
 
         public String getUnits()
         {
@@ -198,7 +199,8 @@ public class DataValuePresenterController
             mValue = value;
         }
 
-        public void reset(){
+        public void reset()
+        {
             mValue = 0;
         }
     }

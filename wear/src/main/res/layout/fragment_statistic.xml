@@ -8,21 +8,20 @@
               tools:context="fragments.StatisticFragment"
               tools:deviceIds="wear_square">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_margin="10dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-
+            android:layout_gravity="left"
             android:id="@+id/compass"
             android:src="@drawable/compass"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
 
         <LinearLayout
-
+            android:layout_gravity="right"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -49,7 +48,7 @@
                 android:layout_height="30dp"
                 android:background="@drawable/selector_datatype_menu_distance"/>
         </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
 
 
     <!--<TextView-->
