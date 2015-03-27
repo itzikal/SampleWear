@@ -117,18 +117,18 @@ public class DataValuePresenterView extends LinearLayout
         mLayoutRightMainText = (TextView) findViewById(R.id.layout_right_main_text);
         mLayoutRightAuxText = (TextView) findViewById(R.id.layout_right_aux_text);
 
-        mLayoutCenter.setVisibility(View.INVISIBLE);
-        mLayoutRight.setVisibility(View.INVISIBLE);
-        mLayoutLeft.setVisibility(View.INVISIBLE);
+//        mLayoutCenter.setVisibility(View.INVISIBLE);
+//        mLayoutRight.setVisibility(View.INVISIBLE);
+//        mLayoutLeft.setVisibility(View.INVISIBLE);
 
-        mLayoutCenter.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                mOnClickListener.onClick(v);
-            }
-        });
+//        mLayoutCenter.setOnClickListener(new OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                mOnClickListener.onClick(v);
+//            }
+//        });
 
     }
 
@@ -235,7 +235,7 @@ public class DataValuePresenterView extends LinearLayout
 
     public void applyDataSetValues(DataValuePresenterController.DataValue[] dataValues)
     {
-        showDataSet();
+//        showDataSet();
         mLayoutCenterMainText.setText(dataValues[1].getConvertedValue());
         mLayoutCenterAuxText.setText(dataValues[1].getAux());
         mLayoutCenterMeasurementUnit.setText(dataValues[1].getUnits());

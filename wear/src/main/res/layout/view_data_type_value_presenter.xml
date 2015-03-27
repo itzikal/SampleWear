@@ -1,37 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
-
-
-    <RelativeLayout
-        android:layout_gravity="top|center_vertical"
-        android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+    android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="vertical"
             android:id="@+id/layoutCenter"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <me.grantland.widget.AutofitLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-                <com.boatbook.sailinglog.views.customTypeFace.TextViewCustomTypeFace
-                    android:id="@+id/title"
-                    android:text="@string/sailing"
-                    android:singleLine="true"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </me.grantland.widget.AutofitLayout>
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,14 +20,14 @@
                     android:orientation="horizontal"
                     android:layout_gravity="center_horizontal">
 
-                    <com.boatbook.sailinglog.views.customTypeFace.TextViewCustomTypeFace
+                    <TextView
                         android:id="@+id/layout_center_main_text"
                         android:text="{320}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"/>
 
-                    <com.boatbook.sailinglog.views.customTypeFace.TextViewCustomTypeFace
+                    <TextView
                         android:id="@+id/layout_center_measurement_unit"
                         android:layout_marginLeft="5dp"
                         android:text="{mi}"
@@ -60,7 +38,7 @@
                         />
                 </LinearLayout>
             </FrameLayout>
-            <com.boatbook.sailinglog.views.customTypeFace.TextViewCustomTypeFace
+            <TextView
                 android:id="@+id/layout_center_aux_text"
                 android:text="{Total path}"
                 android:layout_width="wrap_content"
@@ -72,12 +50,10 @@
             android:orientation="vertical"
             android:id="@+id/layoutLeft"
             android:layout_width="140dp"
-            android:gravity="center_vertical"
+
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/layoutCenter"
-            android:layout_toStartOf="@+id/layoutCenter">
+            android:layout_gravity="center_horizontal"
+            >
 
             <TextView
                 android:id="@+id/layout_left_main_text"
@@ -101,18 +77,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_gravity="bottom|center_horizontal"
             android:orientation="vertical"
             android:id="@+id/layoutRight"
             android:layout_width="140dp"
             android:gravity="center_vertical"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/layoutCenter"
-            android:layout_toEndOf="@+id/layoutCenter">
+            android:layout_height="wrap_content">
 
-
-            <com.boatbook.sailinglog.views.customTypeFace.TextViewCustomTypeFace
+            <TextView
                 android:id="@+id/layout_right_main_text"
                 android:text="{320}"
                 android:layout_width="wrap_content"
@@ -120,12 +92,12 @@
                 android:layout_gravity="center_horizontal"
                />
 
-            <com.boatbook.sailinglog.views.customTypeFace.TextViewCustomTypeFace
+            <TextView
                 android:id="@+id/layout_right_aux_text"
                 android:text="{Total path}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
-    </RelativeLayout>
-</LinearLayout>
+
+</FrameLayout>

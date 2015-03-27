@@ -1,61 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@drawable/main_background"
-             tools:context="fragments.StatisticFragment"
-             tools:deviceIds="wear_square">
+              tools:context="fragments.StatisticFragment"
+              tools:deviceIds="wear_square">
 
     <LinearLayout
         android:layout_margin="10dp"
-        android:layout_gravity="right"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btn_speed_layout"
+        <ImageView
+
+            android:id="@+id/compass"
+            android:src="@drawable/compass"
             android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/selector_datatype_menu_velocity"/>
+            android:layout_height="30dp"/>
+
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_speed_layout"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/selector_datatype_menu_velocity"/>
 
 
-        <Button
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/btn_heading_layout"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/selector_datatype_menu_heading"/>
+            <Button
+                android:layout_marginLeft="5dp"
 
-        <Button
-            android:id="@+id/btn_distance_layout"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/selector_datatype_menu_distance"/>
+                android:layout_marginRight="5dp"
+                android:id="@+id/btn_heading_layout"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/selector_datatype_menu_heading"/>
 
+            <Button
+                android:id="@+id/btn_distance_layout"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/selector_datatype_menu_distance"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <ImageView
-        android:layout_margin="10dp"
-        android:id="@+id/compass"
-        android:src="@drawable/compass"
-        android:layout_width="30dp"
-        android:layout_height="30dp"/>
+
     <!--<TextView-->
-        <!--android:text="{m}"-->
-        <!--android:textColor="@color/red"-->
-        <!--android:textSize="30sp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:id="@+id/texting"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"/>-->
+    <!--android:text="{m}"-->
+    <!--android:textColor="@color/red"-->
+    <!--android:textSize="30sp"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:id="@+id/texting"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"/>-->
 
-    <!--<com.boatbook.sailinglogwear.views.DataValuePresenterView-->
-        <!--android:layout_gravity="center"-->
-        <!--android:id="@+id/dimention_presenter_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"/>-->
+    <com.itzik.samplewear.views.DataValuePresenterView
+        android:layout_gravity="center"
+        android:id="@+id/dimention_presenter_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-</FrameLayout>
+</LinearLayout>

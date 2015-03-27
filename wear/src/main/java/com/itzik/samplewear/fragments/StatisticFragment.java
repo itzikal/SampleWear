@@ -17,6 +17,8 @@ import com.google.gson.Gson;
 import com.itzik.samplewear.R;
 import com.itzik.samplewear.utils.CompassUtil;
 import com.itzik.samplewear.views.DataValuePresenterController;
+import com.itzik.samplewear.views.DataValuePresenterView;
+import com.itzik.samplewear.views.ViewDataType;
 
 /**
  * Created by Itzik on 3/24/2015.
@@ -38,7 +40,7 @@ public class StatisticFragment extends Fragment implements View.OnClickListener,
     {
         View stub = inflater.inflate(R.layout.fragment_statistic, container, false);
 
-        //        mDataValuePresenterController = new DataValuePresenterController(getActivity(), (DataValuePresenterView) stub.findViewById(R.id.dimention_presenter_view));
+        mDataValuePresenterController = new DataValuePresenterController(getActivity(), (DataValuePresenterView) stub.findViewById(R.id.dimention_presenter_view));
 
         //        mDataValuePresenterController.setDataSetVisibility(View.VISIBLE);
         mCompass = (ImageView) stub.findViewById(R.id.compass);
@@ -49,7 +51,7 @@ public class StatisticFragment extends Fragment implements View.OnClickListener,
         mDistanceButton.setOnClickListener(this);
         mHeadingButton.setOnClickListener(this);
         //        mText = (TextView)stub.findViewById(R.id.texting);
-        //        mSpeedButton.callOnClick();
+                mSpeedButton.callOnClick();
 
         mCompassUtil = new CompassUtil();
         mCompassUtil.initCompass(getActivity());
@@ -76,22 +78,22 @@ public class StatisticFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onClick(View v)
     {
-        //        switch (v.getId())
-        //        {
-        //            case R.id.btn_speed_layout:
-        //                mDataValuePresenterController.setSelectedDataType(ViewDataType.Speed);
-        //                break;
-        //            case R.id.btn_distance_layout:
-        //                mDataValuePresenterController.setSelectedDataType(ViewDataType.Distance);
-        //                break;
-        //            case R.id.btn_heading_layout:
-        //                mDataValuePresenterController.setSelectedDataType(ViewDataType.Heading);
-        //                break;
-        //        }
-        //        mSpeedButton.setSelected(false);
-        //        mDistanceButton.setSelected(false);
-        //        mHeadingButton.setSelected(false);
-        //        v.setSelected(true);
+        switch (v.getId())
+        {
+            case R.id.btn_speed_layout:
+                mDataValuePresenterController.setSelectedDataType(ViewDataType.Speed);
+                break;
+            case R.id.btn_distance_layout:
+                mDataValuePresenterController.setSelectedDataType(ViewDataType.Distance);
+                break;
+            case R.id.btn_heading_layout:
+                mDataValuePresenterController.setSelectedDataType(ViewDataType.Heading);
+                break;
+        }
+        mSpeedButton.setSelected(false);
+        mDistanceButton.setSelected(false);
+        mHeadingButton.setSelected(false);
+        v.setSelected(true);
         GoogleApiWrapper.getInstance().sendMessage("/itzik", "message");
 
     }
@@ -114,12 +116,21 @@ public class StatisticFragment extends Fragment implements View.OnClickListener,
                 }
             });
         }
-        else if(messageEvent.getPath().equals("/location"))
+        else if (messageEvent.getPath().equals("/location"))
         {
             Gson gson = new Gson();
             String s = new String(messageEvent.getData());
-            LocationDataSample locationDataSample = gson.fromJson(s, LocationDataSample.class);
+            final LocationDataSample locationDataSample = gson.fromJson(s, LocationDataSample.class);
             Log.d(LOG_TAG, "onMassageReceived(), Location: " + locationDataSample);
+         getActivity().runOnUiThread(new Runnable()
+         {
+             @Override
+             public void run()
+             {
+                 mDataValuePresenterController.updateLocationSample(locationDataSample);
+             }
+         });
+
         }
 
     }

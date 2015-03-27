@@ -1,10 +1,9 @@
 package com.itzik.samplewear.views;
 
 import android.content.Context;
-import android.view.View;
 
-import com.itzik.samplewear.R;
 import com.example.itzik.common.LocationDataSample;
+import com.itzik.samplewear.R;
 
 import java.text.DecimalFormat;
 
@@ -46,17 +45,17 @@ public class DataValuePresenterController
     {
         mContext = context;
         mView = view;
-        mView.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                switchToNextValue();
-            }
-        });
-
-        mView.setVisibility(View.INVISIBLE);
-        setTitle(mContext.getString(R.string.sailing));
+//        mView.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                switchToNextValue();
+//            }
+//        });
+//
+//        setDataSetVisibility(View.VISIBLE);
+//        setTitle(mContext.getString(R.string.sailing));
         mLegDistance = new DataValue(DISTANCE_UNITS, mContext.getString(R.string.leg), DISTANCE_PRECISION);
         mAerialDistract = new DataValue(DISTANCE_UNITS, mContext.getString(R.string.aerial), DISTANCE_PRECISION);
         mTotalDistance  = new DataValue(DISTANCE_UNITS, mContext.getString(R.string.total_path), DISTANCE_PRECISION);
