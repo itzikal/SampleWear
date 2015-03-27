@@ -45,6 +45,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
     private LocationDataSample mStartLocation;
     private float mMaxDriftDistance;
     private TextView mSailingStatus;
+    private TextView mDriftDistanece;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,6 +55,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
 
         mResolvingError = savedInstanceState != null && savedInstanceState.getBoolean(STATE_RESOLVING_ERROR, false); // Maintain state while resolving an error
         mSailingStatus = (TextView) findViewById(R.id.sailing_status);
+        mDriftDistanece = (TextView) findViewById(R.id.drift_distance);
         findViewById(R.id.start_sailing).setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -262,7 +264,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
                     Log.d(LOG_TAG, "run(), route ongoing, current thread: " + Thread.currentThread().getId());
                     try
                     {
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     }
                     catch (InterruptedException e)
                     {
@@ -271,8 +273,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
                     }
                 }
             }
-        }
-        );
+        });
         mSendMockingLocationFromFile.setName("MockingLocationThread");
         mSendMockingLocationFromFile.start();
     }
@@ -284,7 +285,16 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
 
         if (mStartLocation != null && location.distanceTo(mStartLocation) > mMaxDriftDistance)
         {
+            Log.d(LOG_TAG, "onLocationChanged(), Alarm distance reacted - activate alarm");
             GoogleApiWrapper.getInstance().sendMessage("/Alarm", "start");
+            runOnUiThread(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    mDriftDistanece.setText("Alarm started");
+                }
+            });
             mStartLocation = null;
             //start alarm on clock.
         }
@@ -338,8 +348,24 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
     }
 
     @Override
-    public void onMassageReceived(MessageEvent messageEvent)
+    public void onMassageReceived(final MessageEvent messageEvent)
     {
         Log.d(LOG_TAG, "onMassageReceived(), ");
+        if (messageEvent.getPath().equals("/set_alarm"))
+        {
+            Log.d(LOG_TAG, "onMassageReceived(), set alarm");
+            mStartLocation = mLocationsList.get(mLocationCount);
+            mMaxDriftDistance = Integer.parseInt(new String(messageEvent.getData()));
+            Log.d(LOG_TAG, " set alarm(), location: " + mLocationCount + ", distance: " + mMaxDriftDistance);
+            runOnUiThread(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    mDriftDistanece.setText("set to " + mMaxDriftDistance);
+                }
+            });
+
+        }
     }
 }

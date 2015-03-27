@@ -1,21 +1,59 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@drawable/drif_background"
-             tools:context="com.boatbook.sailinglogwear.fragments.NfcFragment">
-<View
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black_20p"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/drift_background"
+             >
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="@color/black_20p"/>-->
 
     <TextView
-        android:textSize="40sp"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:text="set drift radius"
-        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:background="@drawable/gray_shpae_for_statistics"
+        android:padding="2dp"
+        android:textColor="@color/white"
+        android:text="Drift Radius Alarm"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-</FrameLayout>
+    <SeekBar
+        android:background="@drawable/gray_shpae_for_statistics"
+        android:layout_margin="5dp"
+        android:max="800"
+        android:id="@+id/drift_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:background="@drawable/gray_shpae_for_statistics"
+        android:layout_margin="5dp"
+        android:padding="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="14sp"
+            android:text="Radius: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="100"
+            android:id="@+id/radius_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_gravity="center"
+        android:text="Set radius"
+        android:id="@+id/set_radius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
