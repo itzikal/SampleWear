@@ -1,13 +1,11 @@
 package com.example.itzik.common;
 
 import android.location.Location;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
  * Created by Itzik on 12/25/2014.
  */
-public class LocationDataSample implements Parcelable
+public class LocationDataSample
 {
 
     private double mLatitude;
@@ -73,40 +71,6 @@ public class LocationDataSample implements Parcelable
     {
         return getLocation().distanceTo(that.getLocation());
     }
-
-    @Override
-    public int describeContents()
-    {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags)
-    {
-        dest.writeDouble(this.mLatitude);
-        dest.writeDouble(this.mLongitude);
-    }
-
-    public LocationDataSample(Parcel in)
-    {
-        this.mLatitude = in.readDouble();
-        this.mLongitude = in.readDouble();
-    }
-
-    public static final Creator CREATOR = new Creator()
-    {
-        @Override
-        public LocationDataSample createFromParcel(Parcel source)
-        {
-            return new LocationDataSample(source);
-        }
-
-        @Override
-        public LocationDataSample[] newArray(int size)
-        {
-            return new LocationDataSample[size];
-        }
-    };
 
     public double getLongitude()
     {

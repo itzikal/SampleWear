@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.itzik.common.GoogleApiWrapper;
+import com.example.itzik.common.LocationDataSample;
 import com.google.android.gms.wearable.MessageEvent;
+import com.google.gson.Gson;
 import com.itzik.samplewear.R;
 import com.itzik.samplewear.utils.CompassUtil;
 import com.itzik.samplewear.views.DataValuePresenterController;
@@ -112,14 +114,13 @@ public class StatisticFragment extends Fragment implements View.OnClickListener,
                 }
             });
         }
-        getActivity().runOnUiThread(new Runnable()
+        else if(messageEvent.getPath().equals("/location"))
         {
-            @Override
-            public void run()
-            {
-                //                mText.setText("Message received " +messageEvent.getPath());
-            }
-        });
+            Gson gson = new Gson();
+            String s = new String(messageEvent.getData());
+            LocationDataSample locationDataSample = gson.fromJson(s, LocationDataSample.class);
+            Log.d(LOG_TAG, "onMassageReceived(), Location: " + locationDataSample);
+        }
 
     }
 

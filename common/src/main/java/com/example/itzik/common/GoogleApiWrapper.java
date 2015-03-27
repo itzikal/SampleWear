@@ -41,6 +41,7 @@ public class GoogleApiWrapper implements MessageApi.MessageListener, GoogleApiCl
     private final Context mContext;
     private boolean mResolvingError;
 
+
     public interface OnMessageReceivedListener
     {
         void onMassageReceived(MessageEvent messageEvent);

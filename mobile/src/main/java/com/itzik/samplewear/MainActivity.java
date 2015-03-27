@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.itzik.common.GoogleApiWrapper;
 import com.example.itzik.common.LocationDataSample;
 import com.google.android.gms.wearable.MessageEvent;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -261,7 +262,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
                     Log.d(LOG_TAG, "run(), route ongoing, current thread: " + Thread.currentThread().getId());
                     try
                     {
-                        Thread.sleep(500);
+                        Thread.sleep(1000);
                     }
                     catch (InterruptedException e)
                     {
@@ -287,6 +288,9 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
             mStartLocation = null;
             //start alarm on clock.
         }
+        Gson gson = new Gson();
+        String s = gson.toJson(location);
+        GoogleApiWrapper.getInstance().sendMessage("/location", s);
     }
 
 

@@ -34,4 +34,5 @@ dependencies {
     compile 'de.halfbit:tinybus:3.0.1'
     compile files('libs/jdom.jar')
     compile files('libs/jaxen.jar')
+    compile 'com.google.code.gson:gson:2.3.1'
 }
