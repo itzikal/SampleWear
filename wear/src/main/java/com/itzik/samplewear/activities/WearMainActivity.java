@@ -5,9 +5,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.wearable.view.WatchViewStub;
 
+import com.example.itzik.common.GoogleApiWrapper;
 import com.itzik.samplewear.R;
 import com.itzik.samplewear.adapters.MainPagerAdapter;
-import com.itzik.samplewear.utils.GoogleApiWrapper;
 
 
 public class WearMainActivity extends FragmentActivity

@@ -1,4 +1,4 @@
-package com.itzik.samplewear.utils;
+package com.example.itzik.common;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -40,6 +40,13 @@ public class GoogleApiWrapper implements MessageApi.MessageListener, GoogleApiCl
     private final GoogleApiClient mGoogleApiClient;
     private final Context mContext;
     private boolean mResolvingError;
+
+    public interface OnMessageReceivedListener
+    {
+        void onMassageReceived(MessageEvent messageEvent);
+    }
+
+    
     private ArrayList<OnMessageReceivedListener> mMassageRecivedListeners = new ArrayList<>();
 
     public void addListener(OnMessageReceivedListener listener)
@@ -269,7 +276,7 @@ public class GoogleApiWrapper implements MessageApi.MessageListener, GoogleApiCl
         return Asset.createFromBytes(byteStream.toByteArray());
     }
 
-    private void putDataRequest()
+    public void putDataRequest()
     {
 
         Bitmap bitmap = BitmapFactory.decodeFile("path to file");

@@ -14,7 +14,9 @@
     import android.view.MenuItem;
     import android.view.View;
     import android.widget.Button;
+    import android.widget.SeekBar;
 
+    import com.example.itzik.common.GoogleApiWrapper;
     import com.google.android.gms.common.api.GoogleApiClient;
     import com.google.android.gms.wearable.MessageEvent;
 
@@ -42,6 +44,25 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
         mResolvingError = savedInstanceState != null && savedInstanceState.getBoolean(STATE_RESOLVING_ERROR, false); // Maintain state while resolving an error
 
         Button wearButton = (Button) findViewById(R.id.wearButton);
+        ((SeekBar)findViewById(R.id.compass_mover)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+        {
+            int progress = 0;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser)
+            {
+                progress = progresValue;
+                GoogleApiWrapper.getInstance().sendMessage("/move_comapss", progresValue+"");
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar)
+            {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar)
+            {
+            }
+        });
+
         wearButton.setOnClickListener(new View.OnClickListener()
         {
             @Override

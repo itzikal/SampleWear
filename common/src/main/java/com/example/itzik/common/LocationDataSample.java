@@ -1,4 +1,4 @@
-package com.itzik.samplewear.model;
+package com.example.itzik.common;
 
 import android.location.Location;
 import android.os.Parcel;

@@ -8,7 +8,8 @@
              tools:deviceIds="wear_square">
 
     <LinearLayout
-        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:layout_gravity="right"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -36,14 +37,20 @@
 
     </LinearLayout>
 
-    <TextView
-        android:text="{m}"
-        android:textColor="@color/red"
-        android:textSize="30sp"
-        android:layout_gravity="center"
-        android:id="@+id/texting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <ImageView
+        android:layout_margin="10dp"
+        android:id="@+id/compass"
+        android:src="@drawable/compass"
+        android:layout_width="30dp"
+        android:layout_height="30dp"/>
+    <!--<TextView-->
+        <!--android:text="{m}"-->
+        <!--android:textColor="@color/red"-->
+        <!--android:textSize="30sp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:id="@+id/texting"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"/>-->
 
     <!--<com.boatbook.sailinglogwear.views.DataValuePresenterView-->
         <!--android:layout_gravity="center"-->

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.itzik.samplewear.R;
-import com.itzik.samplewear.model.LocationDataSample;
+import com.example.itzik.common.LocationDataSample;
 
 import java.text.DecimalFormat;
 

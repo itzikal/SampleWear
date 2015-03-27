@@ -3,46 +3,54 @@ package com.itzik.samplewear.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
 
+import com.example.itzik.common.GoogleApiWrapper;
 import com.google.android.gms.wearable.MessageEvent;
 import com.itzik.samplewear.R;
-import com.itzik.samplewear.utils.GoogleApiWrapper;
-import com.itzik.samplewear.utils.OnMessageReceivedListener;
+import com.itzik.samplewear.utils.CompassUtil;
 import com.itzik.samplewear.views.DataValuePresenterController;
 
 /**
  * Created by Itzik on 3/24/2015.
  */
-public class StatisticFragment extends Fragment implements View.OnClickListener, OnMessageReceivedListener
+public class StatisticFragment extends Fragment implements View.OnClickListener, GoogleApiWrapper.OnMessageReceivedListener, CompassUtil.OnCompassDegreeChangedListener
 {
+    private static final String LOG_TAG = StatisticFragment.class.getSimpleName();
+    private static final String MOVE_COMPASS = "/move_comapss";
     private Button mSpeedButton;
     private Button mDistanceButton;
     private Button mHeadingButton;
     private DataValuePresenterController mDataValuePresenterController;
-    private TextView mText;
+    //    private TextView mText;
+    private ImageView mCompass;
+    private CompassUtil mCompassUtil;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View stub = inflater.inflate(R.layout.fragment_statistic, container, false);
 
-//        mDataValuePresenterController = new DataValuePresenterController(getActivity(), (DataValuePresenterView) stub.findViewById(R.id.dimention_presenter_view));
+        //        mDataValuePresenterController = new DataValuePresenterController(getActivity(), (DataValuePresenterView) stub.findViewById(R.id.dimention_presenter_view));
 
-//        mDataValuePresenterController.setDataSetVisibility(View.VISIBLE);
-
-        mSpeedButton = (Button)stub.findViewById(R.id.btn_speed_layout);
-        mDistanceButton = (Button)stub.findViewById(R.id.btn_distance_layout);
-        mHeadingButton = (Button)stub.findViewById(R.id.btn_heading_layout);
+        //        mDataValuePresenterController.setDataSetVisibility(View.VISIBLE);
+        mCompass = (ImageView) stub.findViewById(R.id.compass);
+        mSpeedButton = (Button) stub.findViewById(R.id.btn_speed_layout);
+        mDistanceButton = (Button) stub.findViewById(R.id.btn_distance_layout);
+        mHeadingButton = (Button) stub.findViewById(R.id.btn_heading_layout);
         mSpeedButton.setOnClickListener(this);
         mDistanceButton.setOnClickListener(this);
         mHeadingButton.setOnClickListener(this);
-        mText = (TextView)stub.findViewById(R.id.texting);
-//        mSpeedButton.callOnClick();
+        //        mText = (TextView)stub.findViewById(R.id.texting);
+        //        mSpeedButton.callOnClick();
+
+        mCompassUtil = new CompassUtil();
+        mCompassUtil.initCompass(getActivity());
 
         return stub;
     }
@@ -52,6 +60,7 @@ public class StatisticFragment extends Fragment implements View.OnClickListener,
     {
         super.onResume();
         GoogleApiWrapper.getInstance().addListener(this);
+        mCompassUtil.addListener(this);
     }
 
     @Override
@@ -59,27 +68,28 @@ public class StatisticFragment extends Fragment implements View.OnClickListener,
     {
         super.onPause();
         GoogleApiWrapper.getInstance().removeListener(this);
+        mCompassUtil.removeListener(this);
     }
 
     @Override
     public void onClick(View v)
     {
-//        switch (v.getId())
-//        {
-//            case R.id.btn_speed_layout:
-//                mDataValuePresenterController.setSelectedDataType(ViewDataType.Speed);
-//                break;
-//            case R.id.btn_distance_layout:
-//                mDataValuePresenterController.setSelectedDataType(ViewDataType.Distance);
-//                break;
-//            case R.id.btn_heading_layout:
-//                mDataValuePresenterController.setSelectedDataType(ViewDataType.Heading);
-//                break;
-//        }
-//        mSpeedButton.setSelected(false);
-//        mDistanceButton.setSelected(false);
-//        mHeadingButton.setSelected(false);
-//        v.setSelected(true);
+        //        switch (v.getId())
+        //        {
+        //            case R.id.btn_speed_layout:
+        //                mDataValuePresenterController.setSelectedDataType(ViewDataType.Speed);
+        //                break;
+        //            case R.id.btn_distance_layout:
+        //                mDataValuePresenterController.setSelectedDataType(ViewDataType.Distance);
+        //                break;
+        //            case R.id.btn_heading_layout:
+        //                mDataValuePresenterController.setSelectedDataType(ViewDataType.Heading);
+        //                break;
+        //        }
+        //        mSpeedButton.setSelected(false);
+        //        mDistanceButton.setSelected(false);
+        //        mHeadingButton.setSelected(false);
+        //        v.setSelected(true);
         GoogleApiWrapper.getInstance().sendMessage("/itzik", "message");
 
     }
@@ -87,14 +97,39 @@ public class StatisticFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onMassageReceived(final MessageEvent messageEvent)
     {
+        Log.d(LOG_TAG, "onMassageReceived(), " + messageEvent.getPath());
+        if (messageEvent.getPath().equals(MOVE_COMPASS))
+        {
+            Log.d(LOG_TAG, "onMassageReceived(), " + messageEvent.getPath() + " moving compass");
+            getActivity().runOnUiThread(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    int degree = Integer.valueOf(new String(messageEvent.getData()));
+                    Log.d(LOG_TAG, "run(), degree:" + degree);
+                    onDegreeChanged(degree);
+                }
+            });
+        }
         getActivity().runOnUiThread(new Runnable()
         {
             @Override
             public void run()
             {
-                mText.setText("Message received " +messageEvent.getPath());
+                //                mText.setText("Message received " +messageEvent.getPath());
             }
         });
 
+    }
+
+    @Override
+    public void onDegreeChanged(float degree)
+    {
+        Log.d(LOG_TAG, "onDegreeChanged(), start animation");
+
+        mCompass.setPivotX(mCompass.getWidth() / 2);
+        mCompass.setPivotY(mCompass.getHeight() / 2);
+        mCompass.setRotation(degree);
     }
 }

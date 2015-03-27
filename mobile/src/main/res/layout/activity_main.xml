@@ -25,4 +25,11 @@
         android:text="Send data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <SeekBar
+        android:layout_margin="10dp"
+        android:max="360"
+        android:id="@+id/compass_mover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
