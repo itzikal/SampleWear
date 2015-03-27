@@ -1,10 +1,11 @@
-package com.itzik.samplewear;
+package com.itzik.samplewear.services;
 
 import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.WearableListenerService;
+import com.itzik.samplewear.activities.WearMainActivity;
 
 /**
  * Created by Itzik on 3/8/2015.

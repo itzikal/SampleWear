@@ -1,0 +1,21 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@drawable/drif_background"
+             tools:context="com.boatbook.sailinglogwear.fragments.NfcFragment">
+<View
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_20p"/>
+
+    <TextView
+        android:textSize="40sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text="set drift radius"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</FrameLayout>

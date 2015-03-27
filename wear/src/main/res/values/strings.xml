@@ -2,4 +2,13 @@
     <string name="app_name">SampleWear</string>
     <string name="hello_round">Hello Round World!</string>
     <string name="hello_square">Hello Square World!</string>
+
+    <string name="sailing">Sailing...</string>
+    <string name="current">Current</string>
+    <string name="average">Average</string>
+    <string name="max">Max</string>
+    <string name="leg">Leg</string>
+    <string name="to_origin">To origin</string>
+    <string name="aerial">Aerial</string>
+    <string name="total_path">Total path</string>
 </resources>
