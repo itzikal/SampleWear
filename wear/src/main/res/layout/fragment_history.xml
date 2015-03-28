@@ -5,7 +5,7 @@
              android:layout_height="match_parent">
 
     <ImageView
-        android:background="@drawable/history"
+        android:background="@drawable/history_sample"
         android:id="@+id/hisory_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
