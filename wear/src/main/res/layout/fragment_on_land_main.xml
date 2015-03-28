@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/desrt">
+
+    <TextView
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@drawable/gray_shpae_for_statistics"
+        android:padding="2dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="You are on land."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@drawable/gray_shpae_for_statistics"
+        android:padding="2dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="App will start automatically with sailing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:background="@drawable/gray_shpae_for_statistics"
+        android:padding="2dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="swipe to see history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
