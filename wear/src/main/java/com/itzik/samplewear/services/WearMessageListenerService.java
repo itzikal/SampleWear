@@ -34,6 +34,13 @@ public class WearMessageListenerService extends WearableListenerService
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
+        else if(messageEvent.getPath().equalsIgnoreCase("/start_alarm_activity"))
+        {
+            Log.d(LOG_TAG, "onMessageReceived(),test Alarm - starting activity");
+            Intent intent = new Intent(this, DriftAlarmActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
         else
         {
             super.onMessageReceived(messageEvent);

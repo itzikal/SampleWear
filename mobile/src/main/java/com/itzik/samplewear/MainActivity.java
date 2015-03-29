@@ -56,6 +56,14 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
         mResolvingError = savedInstanceState != null && savedInstanceState.getBoolean(STATE_RESOLVING_ERROR, false); // Maintain state while resolving an error
         mSailingStatus = (TextView) findViewById(R.id.sailing_status);
         mDriftDistanece = (TextView) findViewById(R.id.drift_distance);
+
+        findViewById(R.id.test_alarm_activity).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {GoogleApiWrapper.getInstance().sendMessage("/start_alarm_activity","");
+            }
+        });
         findViewById(R.id.start_sailing).setOnClickListener(new View.OnClickListener()
         {
             @Override
