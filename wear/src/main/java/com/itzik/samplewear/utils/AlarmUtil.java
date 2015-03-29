@@ -1,17 +1,19 @@
 package com.itzik.samplewear.utils;
 
+import com.example.itzik.common.GoogleApiWrapper;
+
 /**
  * Created by Oren on 3/28/15.
  */
 public class AlarmUtil {
 
     private boolean mIsOn;
-    private Integer mSeekLocation;
+    private String mRadiusDistance;
     public static AlarmUtil mAlarmUtil;
 
     private AlarmUtil(){
         mIsOn = false;
-        mSeekLocation = 0;
+        mRadiusDistance = "0";
     }
 
     public static AlarmUtil getInstance(){
@@ -20,25 +22,37 @@ public class AlarmUtil {
         return mAlarmUtil;
     }
 
-    public void setAlarmStaus(boolean state,Integer location){
+    public void setAlarmStatus(boolean state, String radius){
         mIsOn = state;
-        mSeekLocation = location;
+        mRadiusDistance = radius;
 
     }
 
-    public boolean ismIsOn() {
+    public boolean isOn() {
         return mIsOn;
     }
 
-    public void setmIsOn(boolean mIsOn) {
+    public void setIsOn(boolean mIsOn) {
         this.mIsOn = mIsOn;
     }
 
-    public Integer getmSeekLocation() {
-        return mSeekLocation;
+    public String getRadiusDistance() {
+        return mRadiusDistance;
     }
 
-    public void setmSeekLocation(Integer mSeekLocation) {
-        this.mSeekLocation = mSeekLocation;
+    public void setRadiusDistance(String distance) {
+        this.mRadiusDistance = distance;
+    }
+
+    public void enableAlarm()
+    {
+        mIsOn = true;
+        GoogleApiWrapper.getInstance().sendMessage("/set_alarm", mRadiusDistance);
+    }
+
+    public void disableAlarm()
+    {
+        mIsOn = false;
+        GoogleApiWrapper.getInstance().sendMessage("/disable_alarm", "");
     }
 }

@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.itzik.common.GoogleApiWrapper;
 import com.itzik.samplewear.R;
+import com.itzik.samplewear.utils.AlarmUtil;
 
 
 /**
@@ -19,13 +19,21 @@ import com.itzik.samplewear.R;
 public class DriftAlarmFragment extends Fragment
 {
     private TextView mValue;
+    private TextView mState;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View stub = inflater.inflate(R.layout.fragment_drift_alarm, container, false);
         mValue = (TextView) stub.findViewById(R.id.radius_value);
+        mState = (TextView) stub.findViewById(R.id.alarm_status);
         SeekBar seekbar = ((SeekBar) stub.findViewById(R.id.drift_seek_bar));
+
+        mValue.setText(AlarmUtil.getInstance().getRadiusDistance());
+        mState.setText((AlarmUtil.getInstance().isOn()? "Enabled": "Disabled"));
+
+        seekbar.setProgress(Integer.parseInt(AlarmUtil.getInstance().getRadiusDistance()));
+
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
         {
 
@@ -44,15 +52,28 @@ public class DriftAlarmFragment extends Fragment
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
             {
-                mValue.setText(Integer.toString(progress + 100));
+                String distance = Integer.toString(progress + 100);
+                mValue.setText(distance);
+                AlarmUtil.getInstance().setRadiusDistance(distance);
             }
         });
 
-        stub.findViewById(R.id.set_radius).setOnClickListener(new View.OnClickListener() {
+        stub.findViewById(R.id.set_radius).setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
-                GoogleApiWrapper.getInstance().sendMessage("/set_alarm", mValue.getText().toString());
+                AlarmUtil.getInstance().enableAlarm();
+                mState.setText((AlarmUtil.getInstance().isOn() ? "Enabled" : "Disabled"));
+            }
+        });
+
+        stub.findViewById(R.id.disable_alarm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                AlarmUtil.getInstance().disableAlarm();
+                mState.setText((AlarmUtil.getInstance().isOn() ? "Enabled" : "Disabled"));
             }
         });
 

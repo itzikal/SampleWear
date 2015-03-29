@@ -2,8 +2,6 @@ package com.itzik.samplewear.utils;
 
 import android.util.Log;
 
-import com.example.itzik.common.GoogleApiWrapper;
-
 import java.util.List;
 
 /**
@@ -40,17 +38,18 @@ public class SpeechCommandHandler
 
         if (mDriftInText && !mDriftDistance.equals(""))
         {
-            GoogleApiWrapper.getInstance().sendMessage("/set_drift", mDriftDistance);
-            AlarmUtil.getInstance().setAlarmStaus(true, Integer.parseInt(mDriftDistance));
+            AlarmUtil.getInstance().setAlarmStatus(true, (mDriftDistance));
+            AlarmUtil.getInstance().enableAlarm();
 
         }
         if (mDocking && mStop)
         {
-            if (AlarmUtil.getInstance().ismIsOn())
-            {
-                GoogleApiWrapper.getInstance().sendMessage("/change_alarm_state", "");
-                AlarmUtil.getInstance().setmIsOn(false);
-            }
+            AlarmUtil.getInstance().disableAlarm();
+//            if (AlarmUtil.getInstance().isOn())
+//            {
+//                GoogleApiWrapper.getInstance().sendMessage("/change_alarm_state", "");
+//                AlarmUtil.getInstance().setmIsOn(false);
+//            }
         }
     }
 

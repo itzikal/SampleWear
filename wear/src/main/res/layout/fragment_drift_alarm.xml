@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@drawable/drift_background"
-             >
+    >
 
     <!--<View-->
     <!--android:layout_width="match_parent"-->
@@ -50,10 +50,36 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:background="@drawable/gray_shpae_for_statistics"
+        android:layout_margin="5dp"
+        android:padding="2dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Alarm status:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/alarm_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
     <Button
         android:layout_gravity="center"
-        android:text="Set radius"
+        android:text="Enable Alarm"
         android:id="@+id/set_radius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_gravity="center"
+        android:text="Disable Alarm"
+        android:id="@+id/disable_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>
