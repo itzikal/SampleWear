@@ -89,6 +89,15 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
             }
         });
 
+        findViewById(R.id.open_kudos).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                GoogleApiWrapper.getInstance().sendMessage("/start_kudos_activity", "");
+            }
+        });
+
         ((SeekBar) findViewById(R.id.compass_mover)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
         {
             int progress = 0;

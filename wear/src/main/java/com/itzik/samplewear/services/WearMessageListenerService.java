@@ -6,6 +6,7 @@ import android.util.Log;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.WearableListenerService;
 import com.itzik.samplewear.activities.DriftAlarmActivity;
+import com.itzik.samplewear.activities.KudosActivity;
 import com.itzik.samplewear.activities.WearMainActivity;
 
 /**
@@ -38,6 +39,13 @@ public class WearMessageListenerService extends WearableListenerService
         {
             Log.d(LOG_TAG, "onMessageReceived(),test Alarm - starting activity");
             Intent intent = new Intent(this, DriftAlarmActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        else if(messageEvent.getPath().equalsIgnoreCase("/start_kudos_activity"))
+        {
+            Log.d(LOG_TAG, "onMessageReceived(),test Alarm - starting activity");
+            Intent intent = new Intent(this, KudosActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }

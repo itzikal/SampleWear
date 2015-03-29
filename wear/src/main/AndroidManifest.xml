@@ -19,6 +19,12 @@
             android:label="@string/app_name" >
 
         </activity>
+        <activity
+            android:name=".activities.KudosActivity"
+            android:label="@string/app_name" >
+
+        </activity>
+
         <activity android:name=".activities.DriftAlarmActivity" />
 
         <service android:name=".services.WearMessageListenerService" >

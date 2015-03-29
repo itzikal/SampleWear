@@ -118,9 +118,20 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <Button
-        android:text="Test Alarm Activity"
-        android:id="@+id/test_alarm_activity"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+        <Button
+            android:text="Test Alarm Activity"
+            android:id="@+id/test_alarm_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:text="Kudos"
+            android:id="@+id/open_kudos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
 </LinearLayout>
