@@ -17,13 +17,11 @@ import com.example.itzik.common.LocationDataSample;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.gson.Gson;
 import com.itzik.samplewear.R;
-import com.itzik.samplewear.utils.AlarmUtil;
 import com.itzik.samplewear.utils.CompassUtil;
+import com.itzik.samplewear.utils.SpeechCommandHandler;
 import com.itzik.samplewear.views.DataValuePresenterController;
 import com.itzik.samplewear.views.DataValuePresenterView;
 import com.itzik.samplewear.views.ViewDataType;
-
-import java.util.List;
 
 /**
  * Created by Itzik on 3/24/2015.
@@ -163,61 +161,12 @@ public class StatisticFragment extends Fragment implements View.OnClickListener,
     {
         if (requestCode == SPEECH_REQUEST_CODE && resultCode == this.getActivity().RESULT_OK)
         {
-            List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            String spokenText = results.get(0);
-            Log.d("spoken text from the activity is : " + LOG_TAG, spokenText);
-            String[] text = spokenText.split(" ");
-            boolean mDriftInText = false;
-            boolean mStop = false;
-            boolean mDocking = false;
-            String mDriftDistance = "";
-            for (String t : text)
-            {
-                if (isInteger(t, 10))
-                {
-                    mDriftDistance = t;
-
-                }
-                else if (t.contains("drift")) mDriftInText = true;
-
-                else if (t.contains("start")) mStop = true;
-
-                else if (t.contains("sailing")) mDocking = true;
-            }
-
-
-            if (mDriftInText && !mDriftDistance.equals(""))
-            {
-                GoogleApiWrapper.getInstance().sendMessage("/set_drift", mDriftDistance);
-                AlarmUtil.getInstance().setAlarmStaus(true, Integer.parseInt(mDriftDistance));
-
-            }
-            if (mDocking && mStop)
-            {
-                if (AlarmUtil.getInstance().ismIsOn())
-                {
-                    GoogleApiWrapper.getInstance().sendMessage("/change_alarm_state", "");
-                    AlarmUtil.getInstance().setmIsOn(false);
-                }
-            }
+            SpeechCommandHandler  speechCommandHandler= new SpeechCommandHandler();
+            speechCommandHandler.handleCommand(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS));
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public static boolean isInteger(String s, int radix)
-    {
-        if (s.isEmpty()) return false;
-        for (int i = 0; i < s.length(); i++)
-        {
-            if (i == 0 && s.charAt(i) == '-')
-            {
-                if (s.length() == 1) return false;
-                else continue;
-            }
-            if (Character.digit(s.charAt(i), radix) < 0) return false;
-        }
-        return true;
-    }
 
     private void displaySpeechRecognizer()
     {
