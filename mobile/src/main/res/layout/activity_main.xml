@@ -55,6 +55,8 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+
+
     <LinearLayout
         android:visibility="gone"
         android:layout_width="wrap_content"
@@ -133,5 +135,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mark from watch"/>
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mark_text"/>
 
 </LinearLayout>

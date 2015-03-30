@@ -384,5 +384,20 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
             });
 
         }
+        if (messageEvent.getPath().equals("/mark_text")){
+            Log.d(LOG_TAG, "onMassageReceived(), mark_text");
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    String mMarkText = new String(messageEvent.getData());
+                    TextView tw = (TextView)findViewById(R.id.mark_text);
+                    tw.setText(mMarkText);
+                }
+            });
+
+
+
+        }
+
     }
 }

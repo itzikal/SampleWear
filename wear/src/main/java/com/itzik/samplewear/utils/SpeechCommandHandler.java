@@ -23,13 +23,15 @@ public class SpeechCommandHandler
         boolean mStop = false;
         boolean mDocking = false;
         boolean mSaying = false;
-        boolean mCamera = false;
+        int mSayingLocation  = 0;
         boolean mMark = true;
 
+
         String mDriftDistance = "";
+        int location = 0;
         for (String t : text)
         {
-
+            location++;
             if (isInteger(t, 10))
             {
                 mDriftDistance = t;
@@ -41,12 +43,12 @@ public class SpeechCommandHandler
 
             else if (t.contains("sailing")) mDocking = true;
 
-            else if (t.contains("saying")) mSaying = true;
-
-            else if (t.contains("camera")){
-                if (!mSaying)
-                mCamera = true;
+            else if (t.contains("saying"))
+            {
+                mSaying = true;
+                mSayingLocation = location;
             }
+
 
             else if (t.contains("mark"))
             {
@@ -72,17 +74,14 @@ public class SpeechCommandHandler
             AlarmUtil.getInstance().disableAlarm();
         }
 
-        if (mMark && mSaying && mCamera ){
-            GoogleApiWrapper.getInstance().sendMessage("/mark_text_camera",spokenText);
-        }
-
         if (mMark && mSaying){
-            GoogleApiWrapper.getInstance().sendMessage("/mark_text",spokenText);
+            StringBuilder sb = new StringBuilder();
+            for (int i=mSayingLocation;i<text.length;i++) {
+                sb.append(text[i] + " ");
+            }
+            GoogleApiWrapper.getInstance().sendMessage("/mark_text", sb.toString());
         }
 
-        if (mMark && mCamera){
-            GoogleApiWrapper.getInstance().sendMessage("/mark_camera","");
-        }
     }
 
     public static boolean isInteger(String s, int radix)

@@ -33,6 +33,8 @@ public class WearMessageListenerService extends WearableListenerService
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
+
+
         else
         {
             super.onMessageReceived(messageEvent);
