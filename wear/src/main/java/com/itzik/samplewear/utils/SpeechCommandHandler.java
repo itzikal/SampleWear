@@ -2,6 +2,8 @@ package com.itzik.samplewear.utils;
 
 import android.util.Log;
 
+import com.example.itzik.common.GoogleApiWrapper;
+
 import java.util.List;
 
 /**
@@ -20,9 +22,14 @@ public class SpeechCommandHandler
         boolean mDriftInText = false;
         boolean mStop = false;
         boolean mDocking = false;
+        boolean mSaying = false;
+        boolean mCamera = false;
+        boolean mMark = true;
+
         String mDriftDistance = "";
         for (String t : text)
         {
+
             if (isInteger(t, 10))
             {
                 mDriftDistance = t;
@@ -33,6 +40,24 @@ public class SpeechCommandHandler
             else if (t.contains("start")) mStop = true;
 
             else if (t.contains("sailing")) mDocking = true;
+
+            else if (t.contains("saying")) mSaying = true;
+
+            else if (t.contains("camera")){
+                if (!mSaying)
+                mCamera = true;
+            }
+
+            else if (t.contains("mark"))
+            {
+                if (!mSaying) {
+                    mMark = true;
+                }
+            }
+
+
+
+
         }
 
 
@@ -45,11 +70,18 @@ public class SpeechCommandHandler
         if (mDocking && mStop)
         {
             AlarmUtil.getInstance().disableAlarm();
-//            if (AlarmUtil.getInstance().isOn())
-//            {
-//                GoogleApiWrapper.getInstance().sendMessage("/change_alarm_state", "");
-//                AlarmUtil.getInstance().setmIsOn(false);
-//            }
+        }
+
+        if (mMark && mSaying && mCamera ){
+            GoogleApiWrapper.getInstance().sendMessage("/mark_text_camera",spokenText);
+        }
+
+        if (mMark && mSaying){
+            GoogleApiWrapper.getInstance().sendMessage("/mark_text",spokenText);
+        }
+
+        if (mMark && mCamera){
+            GoogleApiWrapper.getInstance().sendMessage("/mark_camera","");
         }
     }
 

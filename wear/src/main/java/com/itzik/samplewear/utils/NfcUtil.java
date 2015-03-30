@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
 import android.nfc.tech.NfcF;
+import android.support.v4.app.Fragment;
+import android.view.ViewGroup;
 
 /**
  * Created by Oren on 3/25/15.
@@ -14,6 +16,8 @@ import android.nfc.tech.NfcF;
 public class NfcUtil
 {
     NfcAdapter mNfcAdapter;
+    Fragment currentFragment;
+
 
     public void createNfcUtil(Context context)
     {
@@ -34,9 +38,12 @@ public class NfcUtil
         }
         IntentFilter[] intentFiltersArray = new IntentFilter[]{ndef,};
         String[][] techListsArray = new String[][]{new String[]{NfcF.class.getName()}};
+        try {
+                    mNfcAdapter.enableForegroundDispatch((Activity)context,pendingIntent,intentFiltersArray,techListsArray);
+        }
+        catch(Exception e){
 
-        //        mNfcAdapter.enableForegroundDispatch((Activity)context,pendingIntent,intentFiltersArray,techListsArray);
-
+        }
     }
 
     public void pause(Activity activity)
