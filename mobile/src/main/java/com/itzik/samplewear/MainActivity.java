@@ -1,6 +1,5 @@
 package com.itzik.samplewear;
 
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -120,44 +119,30 @@ public class MainActivity extends ActionBarActivity implements GoogleApiWrapper.
             }
         });
 
-        Button wearButton = (Button) findViewById(R.id.wearButton);
+        Button wearButton = (Button) findViewById(R.id.master_push);
         wearButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 int notificationId = 001;
-                count++;
-
-                Intent openWearActivityIntent = new Intent("com.myCompany.myApp.ACTION.openWearActivity");
-                PendingIntent p = PendingIntent.getActivity(MainActivity.this, 0, openWearActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                NotificationCompat.Action openWearActivityIntentAction = new NotificationCompat.Action.Builder(R.mipmap.ic_launcher, "open Activity", p).build();
-
                 Intent mainActivityIntent = new Intent(MainActivity.this, MainActivity.class);
                 PendingIntent mainActivityPendingIntent = PendingIntent.getActivity(MainActivity.this, 0, mainActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                // Create the openMainAcivityAction
-                NotificationCompat.Action openMainAcivityAction = new NotificationCompat.Action.Builder(R.mipmap.ic_launcher, "Open app, Action Sample", mainActivityPendingIntent).build();
-
-                NotificationCompat.BigPictureStyle bigImageStyle = new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)).setSummaryText("Big image style");
-                bigImageStyle.setBigContentTitle("Big image style content title");
-
+                NotificationCompat.BigPictureStyle bigImageStyle = new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(), R.mipmap.wheel));
+                bigImageStyle.setBigContentTitle("Boat Request");
                 NotificationCompat.BigTextStyle bigStyle = new NotificationCompat.BigTextStyle();
-                bigStyle.bigText("this is event description in big style: " + count + "");
+                bigStyle.bigText("Hi Joseph,Mark asked permission on your boat");
+                NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender().setHintHideIcon(false).setBackground(BitmapFactory.decodeResource(getResources(), R.mipmap.wheel));
+                NotificationCompat.Builder notificationBuilder =
+                        new NotificationCompat.Builder(MainActivity.this)
 
-                NotificationCompat.BigTextStyle secondPageStyle = new NotificationCompat.BigTextStyle();
-                secondPageStyle.setBigContentTitle("Page 2").bigText("A lot of text...");
-
-                Notification secondPageNotification = new NotificationCompat.Builder(MainActivity.this).setStyle(secondPageStyle).build();
-
-                Notification bigImagePageNotification = new NotificationCompat.Builder(MainActivity.this).setStyle(bigImageStyle).build();
-
-                NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender().setHintHideIcon(false).setBackground(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)).addPage(secondPageNotification).addPage(bigImagePageNotification);
-
-                NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(MainActivity.this).setSmallIcon(R.mipmap.ic_launcher).setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)).setContentIntent(mainActivityPendingIntent).setContentTitle("Title").extend(wearableExtender)
-
-                        .addAction(openMainAcivityAction).addAction(openWearActivityIntentAction).setStyle(bigStyle).setContentText("Android Wear Notification");
+                                .setSmallIcon(R.mipmap.ic_launcher)
+                                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                        .setContentIntent(mainActivityPendingIntent)
+                        .setContentTitle("Boat Request")
+                        .extend(wearableExtender)
+                        .setStyle(bigStyle)
+                        .setContentText("Hi Joseph,Mark asked permission on your boat");
 
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
                 notificationManager.notify(notificationId, notificationBuilder.build());

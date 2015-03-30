@@ -130,10 +130,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <Button
+            android:text="Master Req"
+            android:id="@+id/master_push"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
             android:text="Kudos"
             android:id="@+id/open_kudos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
         <TextView
